@@ -4,7 +4,7 @@
   "description": "Backend for CustomPCBuilder",
   "main": "\\",
   "scripts": {
-    "client": "npm run serve --prefix ../custom-pc-builder",
+    "client": "npm run serve --prefix ..",
     "server": "nodemon .",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
