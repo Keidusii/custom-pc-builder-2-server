@@ -9,16 +9,16 @@ const cartRouter = require('./api/cart/index');
 const path = __dirname + '/../dist';
 
 const port = 5002;
+const startDB = async () => {
+  await pool.connect()
+}
+
+startDB()
 
 app.use(express.static(path));
 app.use(cors());
 app.use(morgan('tiny'));
 app.use(bodyParser.json());
-
-app.get("*", (req, res) => {
-  res.sendFile(require('path')
-    .resolve(__dirname, '..', 'dist', 'index.html'));
-})
 
 app.get('/', async (req, res) => {
   try {

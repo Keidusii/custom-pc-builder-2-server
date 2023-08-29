@@ -1,6 +1,6 @@
 const pool = require('../../db');
 
-const getCart =  (req, res) => {
+const getCart = (req, res) => {
   try {
     pool.query(
       'SELECT * FROM cart ORDER BY created',
