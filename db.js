@@ -1,14 +1,10 @@
-const Pool = require('pg').Pool;
+const { Client } = require('pg');
 
-const pool = new Pool({
+const pool = new Client({
   user: process.env.DATA_USER,
-  password: process.env.DATA_PASS,
   host: process.env.HOST,
   port: process.env.DATA_PORT,
-  database: process.env.DATABASE_NAME,
-  ssl: {
-    rejectUnauthorized: false
-  }
+  database: process.env.DATABASE_NAME
 });
 
 module.exports = pool;
