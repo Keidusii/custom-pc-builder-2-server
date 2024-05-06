@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const pool = require('./db');
 const cartRouter = require('./api/cart/index');
+const { loginApi, registerApi } = require('./api/login/index');
 const path = __dirname + '/../dist';
 
 const port = 5002;
@@ -53,6 +54,8 @@ app.delete('/', async (req, res) => {
 });
 
 app.use('/cart', cartRouter);
+app.use('/login', loginApi);
+app.use('/register', registerApi);
 
 app.listen(port, function() {
   console.log(`Server is sprinting on port ${port}`);
