@@ -29,6 +29,21 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
   try {
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,100}$/;
+
+    if (!emailRegex.test(req?.body?.email)) return res.status(400).send('Invalid Email');
+    if (!passwordRegex.test(req?.body?.password)) return res.status(400).send('Invalid Password');
+
+    const emailQuery = await pool.query(
+      'SELECT * FROM credentials WHERE email = $1',
+      [req?.body?.email]
+    );
+
+    if (emailQuery?.rows?.length) {
+      return res.status(400).send('Email already exists');
+    }
+
     const saltRounds = 10;
     const salt = await bcrypt.genSalt(saltRounds);
     const hashedPassword = await bcrypt.hash(req?.body?.password, salt);
