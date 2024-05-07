@@ -11,7 +11,14 @@ const path = __dirname + '/../dist';
 
 const port = 5002;
 const startDB = async () => {
-  await pool.connect()
+  try {
+    console.log('connecting to db');
+    await pool.connect();
+    console.log('connected to db');
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 }
 
 startDB()
