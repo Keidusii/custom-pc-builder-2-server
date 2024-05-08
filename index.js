@@ -60,9 +60,9 @@ app.delete('/', async (req, res) => {
   }
 });
 
-app.use('/cart', cartRouter);
-app.use('/login', loginApi);
-app.use('/register', registerApi);
+app.use('/api/cart', cartRouter);
+app.use('/api/login', loginApi);
+app.use('/api/register', registerApi);
 
 app.listen(port, function() {
   console.log(`Server is sprinting on port ${port}`);
